@@ -3,7 +3,8 @@ import axios from "axios";
 import { Aura } from "../src/client";
 
 jest.mock("axios");
-const getMock = axios.get as jest.Mock;
+const mockCreate = axios.create as jest.Mock;
+const mockGet = axios.get as jest.Mock;
 
 describe("Aura client", () => {
   let aura: Aura;
@@ -11,7 +12,11 @@ describe("Aura client", () => {
     aura = new Aura("token");
   });
 
-  it("should be initialized with token", () => {
+  beforeAll(() => {
+    mockCreate.mockReturnThis();
+  });
+
+  it("should be defined", () => {
     expect(aura).toBeDefined();
   });
 
@@ -23,8 +28,10 @@ describe("Aura client", () => {
       gender: "male",
       email: "bob@example.com",
     };
-    getMock.mockResolvedValueOnce(response);
+    mockGet.mockResolvedValueOnce(response);
+
     const data = await aura.userInfo();
+
     expect(data).toEqual(response);
   });
 });
