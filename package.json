@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "lint": "eslint 'src/**/*.ts'",
     "validate": "npm-run-all --parallel build test lint",
     "prepare": "simple-git-hooks"
