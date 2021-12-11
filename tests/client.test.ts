@@ -22,16 +22,18 @@ describe("Aura client", () => {
 
   it("retrieves personal info", async () => {
     const response = {
-      age: 123,
-      weight: 73.0,
-      height: 181,
-      gender: "male",
-      email: "bob@example.com",
+      data: {
+        age: 123,
+        weight: 73.0,
+        height: 181,
+        gender: "male",
+        email: "bob@example.com",
+      },
     };
     mockGet.mockResolvedValueOnce(response);
 
     const data = await aura.userInfo();
 
-    expect(data).toEqual(response);
+    expect(data).toEqual(response.data);
   });
 });

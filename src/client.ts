@@ -9,7 +9,7 @@ export class Aura {
   constructor(token: string) {
     this.token = token;
     this.client = axios.create({
-      baseURL: "https://api.auraring.com/v1",
+      baseURL: "https://api.ouraring.com/v1",
       headers: {
         Authorization: `Bearer ${this.token}`,
       },
@@ -17,7 +17,17 @@ export class Aura {
     });
   }
 
+  private async _get<T>(path: string): Promise<T> {
+    try {
+      const response = await this.client.get(path);
+      return response.data;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
   public async userInfo(): Promise<UserInfo> {
-    return this.client.get("/userinfo");
+    return this._get<UserInfo>("/userinfo");
   }
 }
