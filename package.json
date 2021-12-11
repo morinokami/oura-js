@@ -1,0 +1,20 @@
+{
+  "name": "oura.js",
+  "version": "0.0.1",
+  "description": "Oura Cloud API client for JavaScript",
+  "author": "Shinya Fujino <shf0811@gmail.com>",
+  "license": "MIT",
+  "keywords": [],
+  "homepage": "https://github.com/morinokami/oura.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morinokami/oura.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/morinokami/oura.js/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
