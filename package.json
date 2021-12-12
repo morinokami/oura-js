@@ -1,6 +1,6 @@
 {
   "name": "oura-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Oura Cloud API client for JavaScript",
   "author": "Shinya Fujino <shf0811@gmail.com>",
   "license": "MIT",
@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "dev": "npm run tsup -- --watch",
-    "build": "npm run tsup -- --minify --dts",
+    "build": "npm run tsup -- --dts",
     "test": "tsc --noEmit && jest --coverage",
     "test:watch": "jest --watchAll",
     "lint": "eslint 'src/**/*.ts'",
