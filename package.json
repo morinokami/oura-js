@@ -4,7 +4,11 @@
   "description": "Oura Cloud API client for JavaScript",
   "author": "Shinya Fujino <shf0811@gmail.com>",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "oura ring",
+    "oura",
+    "api"
+  ],
   "homepage": "https://github.com/morinokami/oura.js#readme",
   "repository": {
     "type": "git",
