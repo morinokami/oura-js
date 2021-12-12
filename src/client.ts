@@ -12,7 +12,7 @@ import {
   UserInfo,
 } from "./types";
 
-export class Aura {
+export class Oura {
   private readonly token: string;
   private readonly client: AxiosInstance;
 
