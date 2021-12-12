@@ -6,8 +6,8 @@ https://cloud.ouraring.com/docs/
 
 Status | HTTP Method | Endpoint | API
 --- | --- | --- | ---
-⚡ | GET | /v1/userinfo |
-⚡ | GET | /v1/sleep |
-⚡ | GET | /v1/activity |
-⚡ | GET | /v1/readiness |
-⚡ | GET | /v1/bedtime |
+⚡ | GET | /v1/userinfo | userinfo
+⚡ | GET | /v1/sleep | sleep
+⚡ | GET | /v1/activity | activity
+⚡ | GET | /v1/readiness | readiness
+⚡ | GET | /v1/bedtime | bedtime
