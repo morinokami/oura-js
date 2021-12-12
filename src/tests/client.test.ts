@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Oura } from "../src/client";
+import { Oura } from "../client";
 import {
   activityExpected,
   activityResponse,
