@@ -281,4 +281,57 @@ describe("Aura client", () => {
     expect(data.readiness).toHaveLength(1);
     expect(data.readiness).toEqual(expected.readiness);
   });
+
+  it("retrieves bedtime data", async () => {
+    const response = {
+      data: {
+        ideal_bedtimes: [
+          {
+            date: "2020-03-17",
+            bedtime_window: {
+              start: -3600,
+              end: 0,
+            },
+            status: "IDEAL_BEDTIME_AVAILABLE",
+          },
+          {
+            date: "2020-03-18",
+            bedtime_window: {
+              start: null,
+              end: null,
+            },
+            status: "LOW_SLEEP_SCORES",
+          },
+        ],
+      },
+    };
+    mockGet.mockResolvedValueOnce(response);
+
+    const expected = {
+      idealBedtimes: [
+        {
+          date: "2020-03-17",
+          bedtimeWindow: {
+            start: -3600,
+            end: 0,
+          },
+          status: "IDEAL_BEDTIME_AVAILABLE",
+        },
+        {
+          date: "2020-03-18",
+          bedtimeWindow: {
+            start: null,
+            end: null,
+          },
+          status: "LOW_SLEEP_SCORES",
+        },
+      ],
+    };
+
+    const data = await aura.bedtime();
+
+    expect(data.idealBedtimes).toBeDefined();
+    expect(data.idealBedtimes).toHaveLength(2);
+    expect(data.idealBedtimes).toEqual(expected.idealBedtimes);
+  });
 });

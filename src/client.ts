@@ -3,6 +3,8 @@ import axios, { AxiosInstance } from "axios";
 import {
   Activity,
   ActivityResponse,
+  Bedtime,
+  BedtimeResponse,
   Readiness,
   ReadinessResponse,
   Sleep,
@@ -93,6 +95,21 @@ export class Aura {
 
     return {
       readiness: readiness.map(this.convertToReadiness),
+    };
+  }
+
+  public async bedtime(
+    start?: string,
+    end?: string
+  ): Promise<{ idealBedtimes: Bedtime[] }> {
+    const queryParams = this.buildQueryParams(start, end);
+    const response = await this._get<{ ideal_bedtimes: BedtimeResponse[] }>(
+      `/bedtime${queryParams}`
+    );
+    const { ideal_bedtimes: idealBedtimes } = response;
+
+    return {
+      idealBedtimes: idealBedtimes.map(this.convertToBedtime),
     };
   }
 
@@ -193,6 +210,17 @@ export class Aura {
       scoreRecoveryIndex: readiness.score_recovery_index,
       scoreTemperature: readiness.score_temperature,
       restModeState: readiness.rest_mode_state,
+    };
+  }
+
+  private convertToBedtime(bedtime: BedtimeResponse): Bedtime {
+    return {
+      date: bedtime.date,
+      bedtimeWindow: {
+        start: bedtime.bedtime_window.start,
+        end: bedtime.bedtime_window.end,
+      },
+      status: bedtime.status,
     };
   }
 }

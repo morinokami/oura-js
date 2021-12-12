@@ -195,3 +195,21 @@ export type Readiness = {
   scoreTemperature: number;
   restModeState: number;
 };
+
+export type BedtimeResponse = {
+  date: string;
+  bedtime_window: {
+    start: number;
+    end: number;
+  };
+  status: "NOT_ENOUGH_DATA" | "LOW_SLEEP_SCORES" | "IDEAL_BEDTIME_AVAILABLE";
+};
+
+export type Bedtime = {
+  date: string;
+  bedtimeWindow: {
+    start: number;
+    end: number;
+  };
+  status: "NOT_ENOUGH_DATA" | "LOW_SLEEP_SCORES" | "IDEAL_BEDTIME_AVAILABLE";
+};
