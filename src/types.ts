@@ -1,3 +1,8 @@
+export type Period = {
+  start?: string;
+  end?: string;
+};
+
 export type UserInfo = {
   age: number;
   weight: number;

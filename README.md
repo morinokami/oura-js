@@ -17,7 +17,7 @@ import { Oura } from 'oura-js'
 const token = 'MY_ACCESS_TOKEN'
 
 const oura = new Oura(token)
-console.log(await oura.userInfo())
+console.log(await oura.sleep({ start: '2021-12-10' }))
 ```
 
 ## API

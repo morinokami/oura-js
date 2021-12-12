@@ -5,6 +5,7 @@ import {
   ActivityResponse,
   Bedtime,
   BedtimeResponse,
+  Period,
   Readiness,
   ReadinessResponse,
   Sleep,
@@ -44,8 +45,9 @@ export class Oura {
     }
   }
 
-  private buildQueryParams(start?: string, end?: string): string {
+  private buildQueryParams(period: Period): string {
     let queryParams = "";
+    const { start, end } = period;
     if (start && end) {
       queryParams = `?start=${start}&end=${end}`;
     } else if (start) {
@@ -60,11 +62,8 @@ export class Oura {
     return await this._get<UserInfo>("/userinfo");
   }
 
-  public async sleep(
-    start?: string,
-    end?: string
-  ): Promise<{ sleep: Sleep[] }> {
-    const queryParams = this.buildQueryParams(start, end);
+  public async sleep(period: Period = {}): Promise<{ sleep: Sleep[] }> {
+    const queryParams = this.buildQueryParams(period);
     const response = await this._get<{ sleep: SleepResponse[] }>(
       `/sleep${queryParams}`
     );
@@ -76,10 +75,9 @@ export class Oura {
   }
 
   public async activity(
-    start?: string,
-    end?: string
+    period: Period = {}
   ): Promise<{ activity: Activity[] }> {
-    const queryParams = this.buildQueryParams(start, end);
+    const queryParams = this.buildQueryParams(period);
     const response = await this._get<{ activity: ActivityResponse[] }>(
       `/activity${queryParams}`
     );
@@ -91,10 +89,9 @@ export class Oura {
   }
 
   public async readiness(
-    start?: string,
-    end?: string
+    period: Period = {}
   ): Promise<{ readiness: Readiness[] }> {
-    const queryParams = this.buildQueryParams(start, end);
+    const queryParams = this.buildQueryParams(period);
     const response = await this._get<{ readiness: ReadinessResponse[] }>(
       `/readiness${queryParams}`
     );
@@ -106,10 +103,9 @@ export class Oura {
   }
 
   public async bedtime(
-    start?: string,
-    end?: string
+    period: Period = {}
   ): Promise<{ idealBedtimes: Bedtime[] }> {
-    const queryParams = this.buildQueryParams(start, end);
+    const queryParams = this.buildQueryParams(period);
     const response = await this._get<{ ideal_bedtimes: BedtimeResponse[] }>(
       `/bedtime${queryParams}`
     );
