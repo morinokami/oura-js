@@ -232,4 +232,53 @@ describe("Aura client", () => {
     expect(data.activity).toHaveLength(1);
     expect(data.activity).toEqual(expected.activity);
   });
+
+  it("retrieves readiness data", async () => {
+    const response = {
+      data: {
+        readiness: [
+          {
+            summary_date: "2021-12-10",
+            period_id: 1,
+            score: 0,
+            score_previous_night: 0,
+            score_sleep_balance: 0,
+            score_previous_day: 0,
+            score_activity_balance: 0,
+            score_resting_hr: 0,
+            score_hrv_balance: 0,
+            score_recovery_index: 0,
+            score_temperature: 0,
+            rest_mode_state: 0,
+          },
+        ],
+      },
+    };
+    mockGet.mockResolvedValueOnce(response);
+
+    const expected = {
+      readiness: [
+        {
+          summaryDate: "2021-12-10",
+          periodId: 1,
+          score: 0,
+          scorePreviousNight: 0,
+          scoreSleepBalance: 0,
+          scorePreviousDay: 0,
+          scoreActivityBalance: 0,
+          scoreRestingHr: 0,
+          scoreHrvBalance: 0,
+          scoreRecoveryIndex: 0,
+          scoreTemperature: 0,
+          restModeState: 0,
+        },
+      ],
+    };
+
+    const data = await aura.readiness();
+
+    expect(data.readiness).toBeDefined();
+    expect(data.readiness).toHaveLength(1);
+    expect(data.readiness).toEqual(expected.readiness);
+  });
 });

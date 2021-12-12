@@ -165,3 +165,33 @@ export type Activity = {
   toTargetMiles: number; // TODO: not documented
   total: number; // TODO: not documented
 };
+
+export type ReadinessResponse = {
+  summary_date: string;
+  period_id: number;
+  score: number;
+  score_previous_night: number;
+  score_sleep_balance: number;
+  score_previous_day: number;
+  score_activity_balance: number;
+  score_resting_hr: number;
+  score_hrv_balance: number;
+  score_recovery_index: number;
+  score_temperature: number;
+  rest_mode_state: number;
+};
+
+export type Readiness = {
+  summaryDate: string;
+  periodId: number;
+  score: number;
+  scorePreviousNight: number;
+  scoreSleepBalance: number;
+  scorePreviousDay: number;
+  scoreActivityBalance: number;
+  scoreRestingHr: number;
+  scoreHrvBalance: number;
+  scoreRecoveryIndex: number;
+  scoreTemperature: number;
+  restModeState: number;
+};

@@ -3,6 +3,8 @@ import axios, { AxiosInstance } from "axios";
 import {
   Activity,
   ActivityResponse,
+  Readiness,
+  ReadinessResponse,
   Sleep,
   SleepResponse,
   UserInfo,
@@ -76,6 +78,21 @@ export class Aura {
 
     return {
       activity: activity.map(this.convertToActivity),
+    };
+  }
+
+  public async readiness(
+    start?: string,
+    end?: string
+  ): Promise<{ readiness: Readiness[] }> {
+    const queryParams = this.buildQueryParams(start, end);
+    const response = await this._get<{ readiness: ReadinessResponse[] }>(
+      `/readiness${queryParams}`
+    );
+    const { readiness } = response;
+
+    return {
+      readiness: readiness.map(this.convertToReadiness),
     };
   }
 
@@ -159,6 +176,23 @@ export class Aura {
       toTargetKm: activity.to_target_km,
       toTargetMiles: activity.to_target_miles,
       total: activity.total,
+    };
+  }
+
+  private convertToReadiness(readiness: ReadinessResponse): Readiness {
+    return {
+      summaryDate: readiness.summary_date,
+      periodId: readiness.period_id,
+      score: readiness.score,
+      scorePreviousNight: readiness.score_previous_night,
+      scoreSleepBalance: readiness.score_sleep_balance,
+      scorePreviousDay: readiness.score_previous_day,
+      scoreActivityBalance: readiness.score_activity_balance,
+      scoreRestingHr: readiness.score_resting_hr,
+      scoreHrvBalance: readiness.score_hrv_balance,
+      scoreRecoveryIndex: readiness.score_recovery_index,
+      scoreTemperature: readiness.score_temperature,
+      restModeState: readiness.rest_mode_state,
     };
   }
 }
