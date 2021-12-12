@@ -1,6 +1,6 @@
 {
   "name": "oura-js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Oura Cloud API client for JavaScript",
   "author": "Shinya Fujino <shf0811@gmail.com>",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "lint": "eslint 'src/**/*.ts'",
     "validate": "npm-run-all --parallel build test lint",
     "prepare": "simple-git-hooks",
+    "prepack": "npm run build",
     "tsup": "tsup src/index.ts --outDir lib"
   },
   "devDependencies": {
