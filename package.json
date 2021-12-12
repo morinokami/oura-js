@@ -1,5 +1,5 @@
 {
-  "name": "oura.js",
+  "name": "oura-js",
   "version": "0.0.1",
   "description": "Oura Cloud API client for JavaScript",
   "author": "Shinya Fujino <shf0811@gmail.com>",

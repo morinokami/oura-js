@@ -1,4 +1,4 @@
-# oura.js
+# Oura.js
 
 https://cloud.ouraring.com/docs/
 
