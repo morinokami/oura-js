@@ -32,7 +32,14 @@ export class Oura {
       const response = await this.client.get(path);
       return response.data;
     } catch (e) {
-      console.error(e);
+      if (axios.isAxiosError(e)) {
+        if (e.response?.data) {
+          // Error from Oura Cloud API
+          const { data } = e.response;
+          throw new Error(`${data.title} - ${data.detail}`);
+        }
+        throw new Error(e.message);
+      }
       throw e;
     }
   }
