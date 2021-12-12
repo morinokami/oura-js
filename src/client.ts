@@ -1,6 +1,12 @@
 import axios, { AxiosInstance } from "axios";
 
-import { Sleep, SleepResponse, UserInfo } from "./types";
+import {
+  Activity,
+  ActivityResponse,
+  Sleep,
+  SleepResponse,
+  UserInfo,
+} from "./types";
 
 export class Aura {
   private readonly token: string;
@@ -27,14 +33,7 @@ export class Aura {
     }
   }
 
-  public async userInfo(): Promise<UserInfo> {
-    return await this._get<UserInfo>("/userinfo");
-  }
-
-  public async sleep(
-    start?: string,
-    end?: string
-  ): Promise<{ sleep: Sleep[] }> {
+  private buildQueryParams(start?: string, end?: string): string {
     let queryParams = "";
     if (start && end) {
       queryParams = `?start=${start}&end=${end}`;
@@ -43,7 +42,18 @@ export class Aura {
     } else if (end) {
       queryParams = `?end=${end}`;
     }
+    return queryParams;
+  }
 
+  public async userInfo(): Promise<UserInfo> {
+    return await this._get<UserInfo>("/userinfo");
+  }
+
+  public async sleep(
+    start?: string,
+    end?: string
+  ): Promise<{ sleep: Sleep[] }> {
+    const queryParams = this.buildQueryParams(start, end);
     const response = await this._get<{ sleep: SleepResponse[] }>(
       `/sleep${queryParams}`
     );
@@ -51,6 +61,21 @@ export class Aura {
 
     return {
       sleep: sleep.map(this.convertToSleep),
+    };
+  }
+
+  public async activity(
+    start?: string,
+    end?: string
+  ): Promise<{ activity: Activity[] }> {
+    const queryParams = this.buildQueryParams(start, end);
+    const response = await this._get<{ activity: ActivityResponse[] }>(
+      `/activity${queryParams}`
+    );
+    const { activity } = response;
+
+    return {
+      activity: activity.map(this.convertToActivity),
     };
   }
 
@@ -93,6 +118,47 @@ export class Aura {
       bedtimeEndDelta: sleep.bedtime_end_delta,
       midpointAtDelta: sleep.midpoint_at_delta,
       temperatureTrendDeviation: sleep.temperature_trend_deviation,
+    };
+  }
+
+  private convertToActivity(activity: ActivityResponse): Activity {
+    return {
+      summaryDate: activity.summary_date,
+      timezone: activity.timezone,
+      dayStart: activity.day_start,
+      dayEnd: activity.day_end,
+      score: activity.score,
+      scoreStayActive: activity.score_stay_active,
+      scoreMoveEveryHour: activity.score_move_every_hour,
+      scoreMeetDailyTargets: activity.score_meet_daily_targets,
+      scoreTrainingFrequency: activity.score_training_frequency,
+      scoreTrainingVolume: activity.score_training_volume,
+      scoreRecoveryTime: activity.score_recovery_time,
+      dailyMovement: activity.daily_movement,
+      nonWear: activity.non_wear,
+      rest: activity.rest,
+      inactive: activity.inactive,
+      inactivityAlerts: activity.inactivity_alerts,
+      low: activity.low,
+      medium: activity.medium,
+      high: activity.high,
+      steps: activity.steps,
+      calTotal: activity.cal_total,
+      calActive: activity.cal_active,
+      metMinInactive: activity.met_min_inactive,
+      metMinLow: activity.met_min_low,
+      metMinMedium: activity.met_min_medium,
+      metMinHigh: activity.met_min_high,
+      averageMet: activity.average_met,
+      class5min: activity.class_5min,
+      met1min: activity.met_1min,
+      restModeState: activity.rest_mode_state,
+      targetCalories: activity.target_calories,
+      targetKm: activity.target_km,
+      targetMiles: activity.target_miles,
+      toTargetKm: activity.to_target_km,
+      toTargetMiles: activity.to_target_miles,
+      total: activity.total,
     };
   }
 }

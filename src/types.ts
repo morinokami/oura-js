@@ -85,3 +85,83 @@ export type Sleep = {
   midpointAtDelta: number; // TODO: not documented
   temperatureTrendDeviation: unknown; // TODO: not documented
 };
+
+export type ActivityResponse = {
+  summary_date: string;
+  timezone: number;
+  day_start: string;
+  day_end: string;
+  score: number;
+  score_stay_active: number;
+  score_move_every_hour: number;
+  score_meet_daily_targets: number;
+  score_training_frequency: number;
+  score_training_volume: number;
+  score_recovery_time: number;
+  daily_movement: number;
+  non_wear: number;
+  rest: number;
+  inactive: number;
+  inactivity_alerts: number;
+  low: number;
+  medium: number;
+  high: number;
+  steps: number;
+  cal_total: number;
+  cal_active: number;
+  met_min_inactive: number;
+  met_min_low: number;
+  // TODO: met_min_medium_plus
+  met_min_medium: number;
+  met_min_high: number;
+  average_met: number;
+  class_5min: string;
+  met_1min: number[];
+  rest_mode_state: number;
+  target_calories: number; // TODO: not documented
+  target_km: number; // TODO: not documented
+  target_miles: number; // TODO: not documented
+  to_target_km: number; // TODO: not documented
+  to_target_miles: number; // TODO: not documented
+  total: number; // TODO: not documented
+};
+
+export type Activity = {
+  summaryDate: string;
+  timezone: number; // TODO: not documented
+  dayStart: string;
+  dayEnd: string;
+  score: number;
+  scoreStayActive: number;
+  scoreMoveEveryHour: number;
+  scoreMeetDailyTargets: number;
+  scoreTrainingFrequency: number;
+  scoreTrainingVolume: number;
+  scoreRecoveryTime: number;
+  dailyMovement: number;
+  nonWear: number;
+  rest: number;
+  inactive: number;
+  inactivityAlerts: number;
+  low: number;
+  medium: number;
+  high: number;
+  steps: number;
+  calTotal: number;
+  calActive: number;
+  metMinInactive: number;
+  metMinLow: number;
+  // TODO: met_min_medium_plus
+  metMinMedium: number;
+  metMinHigh: number;
+  averageMet: number;
+  class5min: string;
+  met1min: number[];
+  restModeState: number;
+  targetCalories: number; // TODO: not documented
+  targetKm: number; // TODO: not documented
+  targetMiles: number; // TODO: not documented
+  toTargetKm: number; // TODO: not documented
+  toTargetMiles: number; // TODO: not documented
+  total: number; // TODO: not documented
+};
