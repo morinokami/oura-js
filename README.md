@@ -10,4 +10,4 @@ Status | HTTP Method | Endpoint | API
 ⚡ | GET | /v1/sleep |
 ⚡ | GET | /v1/activity |
 ⚡ | GET | /v1/readiness |
-🏗️ | GET | /v1/bedtime |
+⚡ | GET | /v1/bedtime |
