@@ -1,6 +1,6 @@
 {
   "name": "oura-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Oura Cloud API client for JavaScript",
   "author": "Shinya Fujino <shf0811@gmail.com>",
   "license": "MIT",
